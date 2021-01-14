@@ -26,6 +26,11 @@ SELECT COUNT(prenotazioni.stanza_id) as 'numero prenotazioni', stanza_id FROM pr
 -Come si chiamano gli ospiti che hanno fatto più di due prenotazioni?
 
 
+-Stampare tutti gli ospiti per ogni prenotazione:
+SELECT * FROM `ospiti` INNER JOIN `prenotazioni_has_ospiti` ON ospiti.id = prenotazioni_has_ospiti.ospite_id;
+
+-Stampare Nome, Cognome, Prezzo e Pagante per tutte le prenotazioni fatte a Maggio 2018:
+SELECT ospiti.name, ospiti.lastname, pagamenti.price, paganti.name as 'Nome pagante', paganti.lastname as 'Cognome pagante', prenotazioni.created_at as 'Data prenotazione' FROM ospiti JOIN prenotazioni_has_ospiti ON ospiti.id = prenotazioni_has_ospiti.ospite_id JOIN prenotazioni ON prenotazioni.id = prenotazioni_has_ospiti.prenotazione_id JOIN pagamenti ON prenotazioni_has_ospiti.prenotazione_id = pagamenti.prenotazione_id JOIN paganti ON pagamenti.pagante_id = paganti.id WHERE MONTH(prenotazioni.created_at) = 5
 
 
 
