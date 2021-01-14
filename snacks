@@ -1,0 +1,31 @@
+- Seleziona tutti gli ospiti che sono stati identificati con la carta di identità:
+SELECT * FROM `ospiti` WHERE document_type = 'CI';
+
+- Seleziona tutti gli ospiti che sono nati dopo il 1988:
+SELECT * FROM `ospiti` WHERE date_of_birth > '1988-12-31';
+
+-Seleziona tutti gli ospiti che hanno più di 20 anni (al momento dell’esecuzione della query):
+SELECT * FROM `ospiti` WHERE TIMESTAMPDIFF(YEAR,ospiti.date_of_birth,CURRENT_DATE) > 20;
+
+
+
+---- GROUP BY ----
+-Conta gli ospiti raggruppandoli per anno di nascita:
+SELECT COUNT(ospiti.id) as 'numero ospiti', YEAR(ospiti.date_of_birth) FROM ospiti GROUP BY YEAR(ospiti.date_of_birth);
+
+-Somma i prezzi dei pagamenti raggruppandoli per status:
+SELECT SUM(price) as 'somma totale', `status` FROM pagamenti GROUP BY `status`;
+
+-Conta quante volte è stata prenotata ogni stanza:
+SELECT COUNT(prenotazioni.stanza_id) as 'numero prenotazioni', stanza_id FROM prenotazioni GROUP BY prenotazioni.stanza_id;
+
+
+
+
+---- JOIN ----
+-Come si chiamano gli ospiti che hanno fatto più di due prenotazioni?
+
+
+
+
+
